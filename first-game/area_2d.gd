@@ -6,6 +6,7 @@ var screen_size # Size of the game window.
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	hide()
 	
 
 func _process(delta):
@@ -36,12 +37,12 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	hide()
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
 
-func start(pos):
+func start(pos : Vector2):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false 
